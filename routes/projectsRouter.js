@@ -66,6 +66,24 @@ router.post("/projects", (req, res) => {
   }
 });
 
+router.get("/projects/:id", (req, res) => {
+  const id = req.params.id;
+
+  Projects.getProjectById(id)
+    .then(project => {
+      if (project) {
+        res.status(200).json(project);
+      } else {
+        res.status(404).json({ error: "Could not find project by that id" });
+      }
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: "server error trying to find project by id" });
+    });
+});
+
 router.post("/tasks", (req, res) => {
   const body = req.body;
   if (!body.description || !body.project_id) {
@@ -80,6 +98,22 @@ router.post("/tasks", (req, res) => {
       .catch(err => {
         console.log("error, could not add task", err);
         res.status(500).json({ error: "Could not add task" });
+      });
+  }
+});
+
+router.post("/resources", (req, res) => {
+  const body = req.body;
+  if (!body.name) {
+    res.status(400).json({ error: "name field is required" });
+  } else {
+    Projects.addResource(body)
+      .then(obj => {
+        res.status(201).json(obj);
+      })
+      .catch(err => {
+        console.log("Error could not add resource", err);
+        res.status(500), json({ error: "Could not add resource" });
       });
   }
 });
