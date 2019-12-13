@@ -5,7 +5,10 @@ const db = knex(config.development);
 module.exports = {
   getProjects,
   getResources,
-  getTasks
+  getTasks,
+  addProject,
+  addResource,
+  addTask
 };
 
 function getProjects() {
@@ -18,4 +21,16 @@ function getResources() {
 
 function getTasks() {
   return db("tasks");
+}
+
+function addProject(project) {
+  return db("projects").insert(project, "id");
+}
+
+function addResource(resource) {
+  return db("resources").insert(resource, "id");
+}
+
+function addTask(task) {
+  return db("tasks").insert(task, "id");
 }
