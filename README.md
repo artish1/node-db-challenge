@@ -40,11 +40,20 @@ Demonstrate your understanding of this week's concepts by answering the followin
 
 - [ ] Explain the difference between `Relational Databases` and `SQL`.
 
+  A) Relational databases and SQL might seem like they are the same by how people talk about them, but
+  in reality SQL is more of an interface to the database, and usually relational databases use some sort of a SQL-type language or interface when using that database. Thus, the only difference between them is that SQL is a type of language to interact with the relation database, while the relational database is more of a type of structure.
+
 - [ ] Why do tables need a `primary key`?
+
+  A) Tables need a primary key so that each row in the table is unique to one on another. This way if you need to delete or update one specific row, you can access that row with the primary key. Without a unique primary key, you would be deleting/accessing/updating all rows that contain the same query text, which could cause disaster.
 
 - [ ] What is the name given to a table column that references the primary key on another table.
 
+  A) That is called a foreign key. Something like employee_id or company_id will reference the id of a different table probably called Employees or Companies.
+
 - [ ] What do we need in order to have a _many to many_ relationship between two tables.
+
+  A) We would need an intermediary table with 2 columns minimum, one for the id of one table, one for the other. So you would have a total of 3 tables. The 2 initial tables, and the other table connecting those 2 in terms of a many to many relationship.
 
 ## Minimum Viable Product
 
